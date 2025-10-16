@@ -1,0 +1,14 @@
+langchain>=0.1.16
+langchain-community>=0.0.34
+langchain-huggingface>=0.0.6
+sentence-transformers>=2.2.2
+huggingface-hub>=0.23.0
+faiss-cpu==1.7.4         # Pin for compatibility with langchain
+python-dotenv>=1.0.0
+streamlit>=1.33.0
+PyPDF2>=3.0.1
+chromadb>=0.4.24
+InstructorEmbedding==1.0.1  # Pin for stability
+# LangChain Core
+langchain
+langchain-core
