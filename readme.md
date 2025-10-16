@@ -1,25 +1,38 @@
 # 🤖 Customer Support Knowledge Base Assistant
 
-A powerful, private chatbot that lets you upload your own documents (PDF/TXT) and ask questions using state-of-the-art language models. Built for customer support teams, this assistant leverages retrieval-augmented generation (RAG) to provide accurate, context-aware answers from your knowledge base.
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+A **private, intelligent chatbot** that empowers customer support teams to query their own documents securely.  
+Built with **retrieval-augmented generation (RAG)**, it provides **accurate, context-aware responses** from your internal knowledge base — no external data leakage.
+
+---
+
+## About
+
+This assistant is designed for teams and businesses who want to leverage their own documentation for instant, reliable answers.  
+**All data stays local**—your files are never sent to third-party servers.  
+_The bot responds after a short delay (about 2 seconds) to simulate natural, human-like conversation._
 
 ---
 
 ## 🚀 Features
 
-- **Document Ingestion:** Upload and process PDF or TXT files to build your searchable knowledge base.
-- **Semantic Search:** Uses advanced embeddings and FAISS vector store for fast, relevant document retrieval.
-- **Conversational Chatbot:** Natural, context-aware Q&A powered by HuggingFace LLMs (Mistral-7B-Instruct).
-- **Interactive Web UI:** Streamlit-based chat interface with chat history, confidence badges, and feedback.
-- **Feedback & Improvement:** Collects user feedback for continuous improvement and tracks helpfulness.
+- 📄 **Document Ingestion:** Upload and process PDF or TXT files to create your searchable knowledge base.
+- 🔍 **Semantic Search:** Retrieve precise answers using FAISS and transformer-based embeddings.
+- 💬 **Conversational Chatbot:** Natural, context-aware responses powered by HuggingFace LLMs (Mistral-7B-Instruct).
+- 🖥️ **Interactive Web UI:** Streamlit interface with history, confidence badges, and feedback tools.
+- 📈 **Continuous Improvement:** Collect feedback for retraining or knowledge optimization.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- [LangChain](https://github.com/langchain-ai/langchain) (document loading, splitting, RAG)
-- [HuggingFace Transformers](https://huggingface.co/) (embeddings & LLMs)
-- [FAISS](https://github.com/facebookresearch/faiss) (vector database)
-- [Streamlit](https://streamlit.io/) (web interface)
+- [LangChain](https://github.com/langchain-ai/langchain) – Document processing & RAG pipeline
+- [HuggingFace Transformers](https://huggingface.co/) – Embeddings & LLMs
+- [FAISS](https://github.com/facebookresearch/faiss) – Vector similarity search
+- [Streamlit](https://streamlit.io/) – Web UI
 - Python 3.9+
 
 ---
@@ -37,30 +50,37 @@ A powerful, private chatbot that lets you upload your own documents (PDF/TXT) an
 
    ```bash
    python -m venv .venv
-   # On Windows:
+   # Windows
    .\.venv\Scripts\activate
-   # On Mac/Linux:
+   # Mac/Linux
    source .venv/bin/activate
    ```
 
 3. **Install dependencies**
 
    ```bash
-   pip install -r requirement.txt
+   pip install -r requirements.txt
    ```
 
 4. **Set up your `.env` file**
-   - Copy `.env.example` to `.env` (or create `.env`)
-   - Add your HuggingFace API token (get it from [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens))
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   **Example:**
+
    ```env
-   HUGGINGFACE_API_TOKEN=your_huggingface_token_here
+   HUGGINGFACEHUB_API_TOKEN=your_huggingface_token_here
+   EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+   LLM_MODEL=mistralai/Mistral-7B-Instruct-v0.2
    ```
 
 ---
 
-## 📝 Usage
+## 🧠 Usage
 
-1. **Start the Streamlit app**
+1. **Run the Streamlit app**
 
    ```bash
    streamlit run app.py
@@ -68,13 +88,15 @@ A powerful, private chatbot that lets you upload your own documents (PDF/TXT) an
 
 2. **Upload your documents**
 
-   - Use the sidebar to upload PDF or TXT files.
-   - Click "Process Documents" to add them to your knowledge base.
+   - Use the sidebar to upload `.pdf` or `.txt` files.
+   - Click **“Process Documents”** to add them to your knowledge base.
 
-3. **Chat with your assistant**
-   - Ask questions in the chat box.
-   - Get answers with confidence scores and source citations.
-   - Provide feedback with thumbs up/down.
+3. **Chat naturally**
+
+   - Ask questions and get context-based answers.
+   - View **confidence scores** and **source citations**.
+   - Give **feedback** (👍 / 👎) to improve responses.
+   - _Note: The bot responds after a short delay (about 2 seconds) to simulate a natural conversation._
 
 ---
 
@@ -83,69 +105,81 @@ A powerful, private chatbot that lets you upload your own documents (PDF/TXT) an
 ```
 customer-support-chatbot/
 │
-├── app.py                  # Streamlit web app
-├── .env                    # Environment variables (API keys, config)
-├── requirement.txt         # Python dependencies
+├── app.py                     # Streamlit web app
+├── .env                       # Environment variables
+├── requirements.txt           # Python dependencies
 ├── config/
-│   └── settings.py         # Configuration loader
+│   └── settings.py            # Configuration loader
 ├── src/
-│   ├── document_processor.py  # Document loading & splitting
+│   ├── document_processor.py  # Document ingestion & text splitting
 │   ├── embeddings.py          # Embedding generation
-│   ├── vector_store.py        # FAISS vector store management
-│   ├── retriever.py           # Semantic search retriever
-│   ├── chatbot.py             # Main chatbot logic
-│   └── utils.py               # Utility functions
+│   ├── vector_store.py        # FAISS vector database management
+│   ├── retriever.py           # Document retrieval logic
+│   ├── chatbot.py             # LLM interaction and response generation
+│   └── utils.py               # Helper functions
 └── ...
 ```
 
 ---
 
-## ⚙️ Configuration Options
+## ⚙️ Configuration
 
-Edit your `.env` file to customize:
+Customize your `.env` file:
 
-- `HUGGINGFACE_API_TOKEN`: Your HuggingFace API key (**required**)
-- `EMBEDDING_MODEL`: Embedding model (default: `sentence-transformers/all-MiniLM-L6-v2`)
-- `LLM_MODEL`: LLM for answering (default: `mistralai/Mistral-7B-Instruct-v0.2`)
-- `CHUNK_SIZE`: Text chunk size for splitting (default: `500`)
-- `CHUNK_OVERLAP`: Overlap between chunks (default: `50`)
-- `TOP_K`: Number of top results to retrieve (default: `3`)
-- `VECTOR_DB_PATH`: Path to vector database (default: `./vector_db`)
-- `RAW_DOCS_PATH`: Path to raw documents (default: `./docs`)
+| Variable                   | Description               | Default                                  |
+| -------------------------- | ------------------------- | ---------------------------------------- |
+| `HUGGINGFACEHUB_API_TOKEN` | HuggingFace API key       | —                                        |
+| `EMBEDDING_MODEL`          | Model for embeddings      | `sentence-transformers/all-MiniLM-L6-v2` |
+| `LLM_MODEL`                | Model for chat responses  | `mistralai/Mistral-7B-Instruct-v0.2`     |
+| `CHUNK_SIZE`               | Text chunk size           | `500`                                    |
+| `CHUNK_OVERLAP`            | Overlap between chunks    | `50`                                     |
+| `TOP_K`                    | Top results for retrieval | `3`                                      |
+| `VECTOR_DB_PATH`           | Vector store directory    | `./vector_db`                            |
+| `RAW_DOCS_PATH`            | Raw document storage      | `./docs`                                 |
 
 ---
 
 ## 🐞 Troubleshooting
 
-- **Missing HuggingFace Token:**  
-  Make sure `HUGGINGFACE_API_TOKEN` is set in your `.env` file.
-
-- **Virtual Environment Issues:**  
-  Activate your virtual environment before running commands.
-
-- **Vector Store Not Initialized:**  
-  Upload and process at least one document before chatting.
-
-- **API Rate Limits:**  
-  Free HuggingFace accounts have rate limits. Upgrade or retry later if you see errors.
-
-- **File Upload Errors:**  
-  Only PDF and TXT files are supported. Check file size and format.
+| Issue                  | Solution                                        |
+| ---------------------- | ----------------------------------------------- |
+| **Missing Token**      | Set `HUGGINGFACEHUB_API_TOKEN` in your `.env`   |
+| **Virtual Env Issues** | Ensure `.venv` is activated                     |
+| **Vector DB Empty**    | Upload and process at least one document        |
+| **Rate Limits**        | HuggingFace free tiers have limits; retry later |
+| **File Upload Errors** | Only PDF/TXT files are supported                |
 
 ---
 
 ## 🌱 Future Enhancements
 
-- 🔒 User authentication and multi-user support
-- 🗂️ Support for more file types (Word, HTML, etc.)
-- 📊 Admin dashboard for analytics and feedback review
-- 🧠 Fine-tuning and custom LLM support
-- ☁️ Cloud deployment templates (Docker, Azure, AWS)
+- 🔒 User authentication & multi-user sessions
+- 🗂️ Additional file formats (DOCX, HTML, Markdown)
+- 📊 Admin analytics dashboard
+- 🧠 Fine-tuning & custom model integration
+- ☁️ Cloud deployment templates (Docker, AWS, Azure)
 
 ---
 
 ## 📸 Screenshots
 
-> ![Chat UI Screenshot](screenshots/chat-ui.png) > ![Sidebar Screenshot](screenshots/sidebar.png)
+| Chat Interface                      | Sidebar                             |
+| ----------------------------------- | ----------------------------------- |
+| ![Chat UI](screenshots/chat-ui.png) | ![Sidebar](screenshots/sidebar.png) |
 
 ---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Please open an issue or submit a pull request. See the `CONTRIBUTING.md` (coming soon) for guidelines.
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Made with ❤️ using LangChain & Streamlit**
