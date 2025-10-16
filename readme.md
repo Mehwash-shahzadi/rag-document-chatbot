@@ -176,10 +176,4 @@ Please open an issue or submit a pull request. See the `CONTRIBUTING.md` (coming
 
 ---
 
-## 📄 License
-
-Licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
-
----
-
 **Made with ❤️ using LangChain & Streamlit**
