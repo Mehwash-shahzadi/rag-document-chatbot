@@ -42,7 +42,7 @@ _The bot responds after a short delay (about 2 seconds) to simulate natural, hum
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/customer-support-chatbot.git
+   git clone https://github.com/Mehwash-shahzadi/rag-document-chatbot.git
    cd customer-support-chatbot
    ```
 
