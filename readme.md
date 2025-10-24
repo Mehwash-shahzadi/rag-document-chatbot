@@ -1,8 +1,4 @@
-# 🤖 Customer Support Knowledge Base Assistant
-
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
-![License](https://img.shields.io/badge/License-MIT-green)
+# Customer Support Knowledge Base Assistant
 
 A **private, intelligent chatbot** that empowers customer support teams to query their own documents securely.  
 Built with **retrieval-augmented generation (RAG)**, it provides **accurate, context-aware responses** from your internal knowledge base — no external data leakage.
@@ -17,7 +13,7 @@ _The bot responds after a short delay (about 2 seconds) to simulate natural, hum
 
 ---
 
-## 🚀 Features
+## Features
 
 - 📄 **Document Ingestion:** Upload and process PDF or TXT files to create your searchable knowledge base.
 - 🔍 **Semantic Search:** Retrieve precise answers using FAISS and transformer-based embeddings.
@@ -37,7 +33,7 @@ _The bot responds after a short delay (about 2 seconds) to simulate natural, hum
 
 ---
 
-## ⚡ Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -78,7 +74,7 @@ _The bot responds after a short delay (about 2 seconds) to simulate natural, hum
 
 ---
 
-## 🧠 Usage
+## Usage
 
 1. **Run the Streamlit app**
 
@@ -100,7 +96,7 @@ _The bot responds after a short delay (about 2 seconds) to simulate natural, hum
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 customer-support-chatbot/
@@ -122,7 +118,7 @@ customer-support-chatbot/
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Customize your `.env` file:
 
@@ -139,7 +135,7 @@ Customize your `.env` file:
 
 ---
 
-## 🐞 Troubleshooting
+## Troubleshooting
 
 | Issue                  | Solution                                        |
 | ---------------------- | ----------------------------------------------- |
@@ -151,29 +147,20 @@ Customize your `.env` file:
 
 ---
 
-## 🌱 Future Enhancements
+## Future Enhancements
 
-- 🔒 User authentication & multi-user sessions
-- 🗂️ Additional file formats (DOCX, HTML, Markdown)
-- 📊 Admin analytics dashboard
-- 🧠 Fine-tuning & custom model integration
-- ☁️ Cloud deployment templates (Docker, AWS, Azure)
+- User authentication & multi-user sessions
+- Additional file formats (DOCX, HTML, Markdown)
+- Admin analytics dashboard
+- Fine-tuning & custom model integration
+- Cloud deployment templates (Docker, AWS, Azure)
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 | Chat Interface                      | Sidebar                             |
 | ----------------------------------- | ----------------------------------- |
 | ![Chat UI](screenshots/chat-ui.png) | ![Sidebar](screenshots/sidebar.png) |
 
 ---
-
-## 🤝 Contributing
-
-Contributions are welcome!  
-Please open an issue or submit a pull request. See the `CONTRIBUTING.md` (coming soon) for guidelines.
-
----
-
-**Made with ❤️ using LangChain & Streamlit**
