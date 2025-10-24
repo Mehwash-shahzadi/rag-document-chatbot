@@ -1,166 +1,123 @@
 # Customer Support Knowledge Base Assistant
 
-A **private, intelligent chatbot** that empowers customer support teams to query their own documents securely.  
-Built with **retrieval-augmented generation (RAG)**, it provides **accurate, context-aware responses** from your internal knowledge base — no external data leakage.
+A private, intelligent chatbot that helps customer support teams query their internal documents securely using retrieval-augmented generation (RAG). Ask questions in natural language and get accurate answers from your own knowledge base—all processed locally with no external data sharing.
 
----
+## Overview
 
-## About
+This project solves a common problem: searching through tons of documentation to find answers. Instead of manually digging through PDFs and text files, you can simply ask questions and get instant, context-aware responses with source citations.
 
-This assistant is designed for teams and businesses who want to leverage their own documentation for instant, reliable answers.  
-**All data stays local**—your files are never sent to third-party servers.  
-_The bot responds after a short delay (about 2 seconds) to simulate natural, human-like conversation._
-
----
+Everything runs locally. Your documents never leave your system, making it perfect for handling sensitive customer data and internal processes.
 
 ## Features
 
-- 📄 **Document Ingestion:** Upload and process PDF or TXT files to create your searchable knowledge base.
-- 🔍 **Semantic Search:** Retrieve precise answers using FAISS and transformer-based embeddings.
-- 💬 **Conversational Chatbot:** Natural, context-aware responses powered by HuggingFace LLMs (Mistral-7B-Instruct).
-- 🖥️ **Interactive Web UI:** Streamlit interface with history, confidence badges, and feedback tools.
-- 📈 **Continuous Improvement:** Collect feedback for retraining or knowledge optimization.
+- **Document Processing** - Upload PDF and TXT files to build your searchable knowledge base
+- **Semantic Search** - Find answers based on meaning, not just keywords, using FAISS vector search
+- **Natural Conversations** - Chat naturally with Mistral-7B-Instruct LLM integration
+- **Source Citations** - Every answer includes confidence scores and document references
+- **Feedback Collection** - Track response quality with thumbs up/down for continuous improvement
+- **Privacy First** - All processing happens locally with no external API calls for document storage
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
+- **LangChain** - Document processing and RAG pipeline
+- **HuggingFace Transformers** - Embeddings and language models
+- **FAISS** - Vector similarity search
+- **Streamlit** - Interactive web interface
+- **Python 3.9+**
 
-- [LangChain](https://github.com/langchain-ai/langchain) – Document processing & RAG pipeline
-- [HuggingFace Transformers](https://huggingface.co/) – Embeddings & LLMs
-- [FAISS](https://github.com/facebookresearch/faiss) – Vector similarity search
-- [Streamlit](https://streamlit.io/) – Web UI
-- Python 3.9+
+## Screenshots
 
----
+![Home Page](screenshots/chat-ui.png)
+![sidebar](screenshots/sidebar.png)
 
-## Installation
+## Quick Start
 
-1. **Clone the repository**
+### Installation
 
-   ```bash
-   git clone https://github.com/Mehwash-shahzadi/rag-document-chatbot.git
-   cd customer-support-chatbot
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/Mehwash-shahzadi/rag-document-chatbot.git
+cd customer-support-chatbot
 
-2. **Create and activate a virtual environment**
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .\.venv\Scripts\activate
 
-   ```bash
-   python -m venv .venv
-   # Windows
-   .\.venv\Scripts\activate
-   # Mac/Linux
-   source .venv/bin/activate
-   ```
+# Install dependencies
+pip install -r requirements.txt
 
-3. **Install dependencies**
+# Set up environment variables
+cp .env.example .env
+```
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Configuration
 
-4. **Set up your `.env` file**
+Add your HuggingFace API token to `.env`:
 
-   ```bash
-   cp .env.example .env
-   ```
+```env
+HUGGINGFACEHUB_API_TOKEN=your_token_here
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+LLM_MODEL=mistralai/Mistral-7B-Instruct-v0.2
+```
 
-   **Example:**
+Get your free API token from [HuggingFace](https://huggingface.co/).
 
-   ```env
-   HUGGINGFACEHUB_API_TOKEN=your_huggingface_token_here
-   EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-   LLM_MODEL=mistralai/Mistral-7B-Instruct-v0.2
-   ```
+### Running the App
 
----
+```bash
+streamlit run app.py
+```
 
-## Usage
-
-1. **Run the Streamlit app**
-
-   ```bash
-   streamlit run app.py
-   ```
-
-2. **Upload your documents**
-
-   - Use the sidebar to upload `.pdf` or `.txt` files.
-   - Click **“Process Documents”** to add them to your knowledge base.
-
-3. **Chat naturally**
-
-   - Ask questions and get context-based answers.
-   - View **confidence scores** and **source citations**.
-   - Give **feedback** (👍 / 👎) to improve responses.
-   - _Note: The bot responds after a short delay (about 2 seconds) to simulate a natural conversation._
-
----
+Open your browser to `http://localhost:8501`, upload your documents via the sidebar, click "Process Documents", and start asking questions.
 
 ## Project Structure
 
 ```
 customer-support-chatbot/
-│
-├── app.py                     # Streamlit web app
-├── .env                       # Environment variables
+├── app.py                     # Main Streamlit application
+├── .env                       # Environment configuration
 ├── requirements.txt           # Python dependencies
 ├── config/
 │   └── settings.py            # Configuration loader
-├── src/
-│   ├── document_processor.py  # Document ingestion & text splitting
-│   ├── embeddings.py          # Embedding generation
-│   ├── vector_store.py        # FAISS vector database management
-│   ├── retriever.py           # Document retrieval logic
-│   ├── chatbot.py             # LLM interaction and response generation
-│   └── utils.py               # Helper functions
-└── ...
+└── src/
+    ├── document_processor.py  # Document ingestion and chunking
+    ├── embeddings.py          # Vector embeddings generation
+    ├── vector_store.py        # FAISS database management
+    ├── retriever.py           # Document retrieval logic
+    ├── chatbot.py             # LLM response generation
+    └── utils.py               # Helper functions
 ```
 
----
+## Configuration Options
 
-## Configuration
+Customize settings in your `.env` file:
 
-Customize your `.env` file:
-
-| Variable                   | Description               | Default                                  |
-| -------------------------- | ------------------------- | ---------------------------------------- |
-| `HUGGINGFACEHUB_API_TOKEN` | HuggingFace API key       | —                                        |
-| `EMBEDDING_MODEL`          | Model for embeddings      | `sentence-transformers/all-MiniLM-L6-v2` |
-| `LLM_MODEL`                | Model for chat responses  | `mistralai/Mistral-7B-Instruct-v0.2`     |
-| `CHUNK_SIZE`               | Text chunk size           | `500`                                    |
-| `CHUNK_OVERLAP`            | Overlap between chunks    | `50`                                     |
-| `TOP_K`                    | Top results for retrieval | `3`                                      |
-| `VECTOR_DB_PATH`           | Vector store directory    | `./vector_db`                            |
-| `RAW_DOCS_PATH`            | Raw document storage      | `./docs`                                 |
-
----
+| Variable                   | Description                    | Default                                  |
+| -------------------------- | ------------------------------ | ---------------------------------------- |
+| `HUGGINGFACEHUB_API_TOKEN` | HuggingFace API key (required) | -                                        |
+| `EMBEDDING_MODEL`          | Model for text embeddings      | `sentence-transformers/all-MiniLM-L6-v2` |
+| `LLM_MODEL`                | Language model for responses   | `mistralai/Mistral-7B-Instruct-v0.2`     |
+| `CHUNK_SIZE`               | Text chunk size for processing | `500`                                    |
+| `CHUNK_OVERLAP`            | Overlap between chunks         | `50`                                     |
+| `TOP_K`                    | Number of results to retrieve  | `3`                                      |
+| `VECTOR_DB_PATH`           | Vector store directory         | `./vector_db`                            |
+| `RAW_DOCS_PATH`            | Raw document storage path      | `./docs`                                 |
 
 ## Troubleshooting
 
-| Issue                  | Solution                                        |
-| ---------------------- | ----------------------------------------------- |
-| **Missing Token**      | Set `HUGGINGFACEHUB_API_TOKEN` in your `.env`   |
-| **Virtual Env Issues** | Ensure `.venv` is activated                     |
-| **Vector DB Empty**    | Upload and process at least one document        |
-| **Rate Limits**        | HuggingFace free tiers have limits; retry later |
-| **File Upload Errors** | Only PDF/TXT files are supported                |
+| Issue                      | Solution                                           |
+| -------------------------- | -------------------------------------------------- |
+| Missing API token error    | Add `HUGGINGFACEHUB_API_TOKEN` to your `.env` file |
+| Virtual environment issues | Ensure `.venv` is activated before running         |
+| No documents found         | Upload and process documents using the sidebar     |
+| Rate limit errors          | Wait and retry, or upgrade HuggingFace tier        |
+| File upload fails          | Only PDF and TXT formats are currently supported   |
 
----
+## Roadmap
 
-## Future Enhancements
-
-- User authentication & multi-user sessions
-- Additional file formats (DOCX, HTML, Markdown)
-- Admin analytics dashboard
-- Fine-tuning & custom model integration
-- Cloud deployment templates (Docker, AWS, Azure)
-
----
-
-## Screenshots
-
-| Chat Interface                      | Sidebar                             |
-| ----------------------------------- | ----------------------------------- |
-| ![Chat UI](screenshots/chat-ui.png) | ![Sidebar](screenshots/sidebar.png) |
-
----
+- [ ] User authentication and multi-user support
+- [ ] Additional file formats (DOCX, HTML, Markdown)
+- [ ] Admin analytics dashboard
+- [ ] Model fine-tuning capabilities
+- [ ] Docker containerization
+- [ ] Cloud deployment templates (AWS, Azure, GCP)
