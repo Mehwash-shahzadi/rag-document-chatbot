@@ -27,8 +27,9 @@ Everything runs locally. Your documents never leave your system, making it perfe
 
 ## Screenshots
 
-![Home Page](screenshots/chat-ui.png)
-![sidebar](screenshots/sidebar.png)
+| Chat Interface                      | Sidebar                             |
+| ----------------------------------- | ----------------------------------- |
+| ![Chat UI](screenshots/chat-ui.png) | ![Sidebar](screenshots/sidebar.png) |
 
 ## Quick Start
 
