@@ -80,7 +80,7 @@ def process_docs(files):
                 except:
                     pass
             
-            status.update(label="✅ Ready!", state="complete")
+            status.update(label="Ready!", state="complete")
             time.sleep(0.5)
         
         return True
@@ -98,9 +98,9 @@ with st.sidebar:
     
     # Status
     if vm.exists():
-        st.success("✅ Active")
+        st.success("Active")
     else:
-        st.warning("⚠️ No KB")
+        st.warning("No KB")
     
     st.markdown("---")
     
@@ -114,7 +114,7 @@ with st.sidebar:
     )
     
     if uploaded:
-        if st.button("🚀 Process", use_container_width=True):
+        if st.button(" Process", use_container_width=True):
             if process_docs(uploaded):
                 st.balloons()
                 time.sleep(1)
@@ -123,13 +123,13 @@ with st.sidebar:
     st.markdown("---")
     
     # Actions
-    if st.button("🔄 New Chat", use_container_width=True):
+    if st.button(" New Chat", use_container_width=True):
         st.session_state.messages = []
         if st.session_state.chatbot:
             st.session_state.chatbot.clear_memory()
         st.rerun()
     
-    if st.button("🗑️ Delete KB", use_container_width=True):
+    if st.button("Delete KB", use_container_width=True):
         vm.delete_vector_store()
         st.session_state.chatbot = None
         st.session_state.messages = []
@@ -153,15 +153,15 @@ for msg in st.session_state.messages:
             if "conf" in msg:
                 c = msg["conf"]
                 if c >= 0.7:
-                    st.caption(f"🟢 {c:.0%}")
+                    st.caption(f" {c:.0%}")
                 elif c >= 0.5:
-                    st.caption(f"🟡 {c:.0%}")
+                    st.caption(f" {c:.0%}")
                 else:
-                    st.caption(f"🔴 {c:.0%}")
+                    st.caption(f" {c:.0%}")
             
             # Sources
             if "src" in msg and msg["src"]:
-                with st.expander("📚 Sources"):
+                with st.expander(" Sources"):
                     st.text(msg["src"])
 
 # Chat input
@@ -185,15 +185,15 @@ if st.session_state.chatbot:
                 # Show confidence
                 c = result['confidence']
                 if c >= 0.7:
-                    st.caption(f"🟢 {c:.0%}")
+                    st.caption(f" {c:.0%}")
                 elif c >= 0.5:
-                    st.caption(f"🟡 {c:.0%}")
+                    st.caption(f" {c:.0%}")
                 else:
-                    st.caption(f"🔴 {c:.0%}")
+                    st.caption(f" {c:.0%}")
                 
                 # Sources
                 if result.get('sources'):
-                    with st.expander("📚 Sources"):
+                    with st.expander(" Sources"):
                         st.text(result['sources'])
                 
                 # Save
@@ -208,7 +208,7 @@ if st.session_state.chatbot:
 
 else:
     # Welcome
-    st.markdown("# 🤖 AI Knowledge Assistant")
+    st.markdown("#  AI Knowledge Assistant")
     st.markdown("Chat with your documents using AI")
     
     st.markdown("")
@@ -218,12 +218,12 @@ else:
     c1, c2, c3 = st.columns(3)
     
     with c1:
-        st.markdown("### 🔍")
+        st.markdown("### 🤖")
         st.markdown("**Smart Search**")
         st.markdown("Instant answers")
     
     with c2:
-        st.markdown("### 📊")
+        st.markdown("### 🎯")
         st.markdown("**Confidence**")
         st.markdown("Reliable scores")
     
@@ -237,7 +237,7 @@ else:
     st.markdown("")
     
     # Guide
-    st.markdown("### 🚀 Quick Start")
+    st.markdown("###  Quick Start")
     st.markdown("**1.** Upload PDF or TXT files")
     st.markdown("**2.** Click Process button")
     st.markdown("**3.** Ask your questions!")
@@ -245,4 +245,4 @@ else:
     st.markdown("")
     st.markdown("")
     
-    st.info("👈 Upload documents in the sidebar to begin")
+    st.info(" Upload documents in the sidebar to begin")
